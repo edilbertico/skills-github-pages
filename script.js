@@ -1,4 +1,3 @@
-
 const precios = JSON.parse(localStorage.getItem('precios')) || {
   automovil: {
     enjuague: 25000,
