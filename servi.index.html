@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AUTOSERVICIO WHATAXI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>AUTOSERVICIO WHATAXI</h1>
+  </header>
+
+  <!-- Formulario de registro de nuevo usuario -->
+  <div class="container">
+    <h2>Registro de Nuevo Usuario</h2>
+    <label for="nombre">Nombre Completo:</label>
+    <input type="text" id="nombre" placeholder="Ejemplo: Juan Pérez" required>
+
+    <label for="correo">Correo Electrónico:</label>
+    <input type="email" id="correo" placeholder="Ejemplo: juan@example.com" required>
+
+    <label for="contrasena">Contraseña:</label>
+    <input type="password" id="contrasena" placeholder="Ingrese su contraseña" required>
+
+    <button onclick="registrarUsuario()">Registrar Usuario</button>
+  </div>
+
+  <!-- Formulario de inicio de sesión del administrador -->
+  <div class="container admin-login">
+    <h2>Iniciar Sesión como Administrador</h2>
+    <label for="admin-user">Usuario:</label>
+    <input type="text" id="admin-user" placeholder="admin">
+    <label for="admin-password">Contraseña:</label>
+    <input type="password" id="admin-password" placeholder="password">
+    <button onclick="loginAdmin()">Iniciar Sesión</button>
+  </div>
+
+  <!-- Sección del administrador -->
+  <div class="container admin-section">
+    <h2>Panel de Administración</h2>
+    <label for="new-lavador">Nuevo Lavador:</label>
+    <input type="text" id="new-lavador" placeholder="Ejemplo: Luis Pérez">
+    <button onclick="agregarLavador()">Agregar Lavador</button>
+
+    <label>Ajustar Precios:</label>
+    <div>
+      <label>Automóvil - Enjuague:</label>
+      <input type="number" id="precio-automovil-enjuague" value="25000">
+      <label>Camioneta - Enjuague:</label>
+      <input type="number" id="precio-camioneta-enjuague" value="30000">
+      <label>Moto - Lavado:</label>
+      <input type="number" id="precio-moto-lavado" value="15000">
+    </div>
+    <button onclick="guardarPrecios()">Guardar Precios</button>
+  </div>
+
+  <div class="container">
+    <h2>Registro de Vehículo y Servicio</h2>
+    <label for="categoria">Categoría del Vehículo:</label>
+    <select id="categoria" onchange="cargarServicios()" required>
+      <option value="">Seleccione una categoría</option>
+      <option value="automovil">Automóvil</option>
+      <option value="camioneta">Camioneta</option>
+      <option value="moto">Moto</option>
+    </select>
+
+    <div id="servicios-container" style="display: none;">
+      <label>Servicios:</label>
+      <div class="servicios-container" id="servicios-list"></div>
+      <div class="total" id="total">Total: $0</div>
+    </div>
+
+    <label for="placa">Placa del Vehículo:</label>
+    <input type="text" id="placa" placeholder="Ejemplo: ABC123" required>
+
+    <label for="color">Color del Vehículo:</label>
+    <input type="text" id="color" placeholder="Ejemplo: Rojo" required>
+
+    <label for="propietario">Nombre del Propietario:</label>
+    <input type="text" id="propietario" placeholder="Ejemplo: Juan Pérez" required>
+
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" id="telefono" placeholder="Ejemplo: 1234567890" required>
+
+    <label for="observaciones">Observaciones:</label>
+    <textarea id="observaciones" placeholder="Describa el estado del vehículo al recibirlo"></textarea>
+
+    <label for="lavador">Lavador Disponible:</label>
+    <select id="lavador" required>
+      <option value="">Seleccione un lavador</option>
+      <option value="juan">Juan López</option>
+      <option value="maria">María Gómez</option>
+      <option value="carlos">Carlos Ramírez</option>
+    </select>
+
+    <div class="image-upload">
+      <div>
+        <label for="foto-frente">Frente</label>
+        <input type="file" id="foto-frente" accept="image/*" onchange="mostrarImagen('foto-frente', 'preview-frente')">
+        <div class="image-preview" id="preview-frente"></div>
+      </div>
+      <div>
+        <label for="foto-izquierda">Lado Izquierdo</label>
+        <input type="file" id="foto-izquierda" accept="image/*" onchange="mostrarImagen('foto-izquierda', 'preview-izquierda')">
+        <div class="image-preview" id="preview-izquierda"></div>
+      </div>
+      <div>
+        <label for="foto-derecha">Lado Derecho</label>
+        <input type="file" id="foto-derecha" accept="image/*" onchange="mostrarImagen('foto-derecha', 'preview-derecha')">
+        <div class="image-preview" id="preview-derecha"></div>
+      </div>
+      <div>
+        <label for="foto-atras">Atrás</label>
+        <input type="file" id="foto-atras" accept="image/*" onchange="mostrarImagen('foto-atras', 'preview-atras')">
+        <div class="image-preview" id="preview-atras"></div>
+      </div>
+    </div>
+
+    <label>Fecha y Hora de Recepción:</label>
+    <input type="text" id="fecha-recepcion" readonly required>
+
+    <button onclick="registrarServicio()">Registrar Servicio</button>
+    <button class="print-button" onclick="imprimirRecibo()">Imprimir Recibo</button>
+
+    <div class="result" id="resultado"></div>
+  </div>
+
+  <div class="container history">
+    <h2>Historial de Lavados</h2>
+    <ul id="historial"></ul>
+  </div>
+
+  <footer>
+    Realizado por: Edilberto Morales
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
